@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-export function Tabs({ defaultValue, children }) {
-  const [activeTab, setActiveTab] = useState(defaultValue);
-  return <div>{children(activeTab, setActiveTab)}</div>;
-}
+export function Tabs({ children }) {
+    return <div className="tabs-container">{children}</div>;
+  }
+  
 
 export function TabsList({ children }) {
   return <div className="tabs-list">{children}</div>;
