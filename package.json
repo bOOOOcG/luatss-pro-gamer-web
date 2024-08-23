@@ -1,0 +1,13 @@
+{
+  "name": "luatss-pro-gamer-web",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "echo 'No build step necessary'",
+    "start": "serve -s ."
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "serve": "^14.0.0"
+  }
+}
