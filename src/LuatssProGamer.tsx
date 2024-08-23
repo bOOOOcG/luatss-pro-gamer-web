@@ -53,11 +53,13 @@ const GlitchText = ({ text }) => {
   return (
     <span className="relative inline-block">
       <span className="relative z-10">{text}</span>
-      <span className="absolute top-0 left-0 -ml-0.5 text-red-500 opacity-70">{text}</span>
-      <span className="absolute top-0 left-0 ml-0.5 text-blue-500 opacity-70">{text}</span>
+      <span className="absolute top-0 left-0 text-red-500 opacity-70" style={{ transform: 'translateX(-5px)' }}>{text}</span>
+      <span className="absolute top-0 left-0 text-blue-500 opacity-70" style={{ transform: 'translateX(5px)' }}>{text}</span>
     </span>
-  )
-}
+  );
+};
+
+
 
 export default function Component() {
   const [isHovering, setIsHovering] = useState(false)
