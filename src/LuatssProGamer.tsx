@@ -5,12 +5,16 @@ import { Button } from './components/ui/Button.tsx';
 import { Card, CardContent } from './components/ui/Card.tsx';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/Tabs.tsx';
 import { Trophy, Target, Crosshair, Skull, Clock, Users, Gamepad2, Bomb, Zap, Headphones, Coffee } from 'lucide-react'
+import LuatssImage from './images/Luatss.png';
 
-const AnimatedCounter = ({ value, duration = 2 }) => {
+const AnimatedCounter = ({ value, duration = 4 }) => {
   const [count, setCount] = useState(0)
   const countRef = useRef(null)
   const controls = useAnimation()
   const inView = useInView(countRef)
+
+  // easeOutCubic function for non-linear easing
+  const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3)
 
   useEffect(() => {
     if (inView) {
@@ -19,14 +23,24 @@ const AnimatedCounter = ({ value, duration = 2 }) => {
         transition: { duration: 0.5 }
       })
       let start = 0
-      const end = parseInt(value)
+      const end = parseFloat(value)
       if (start === end) return
 
-      let timer = setInterval(() => {
-        start += 1
-        setCount(start)
-        if (start === end) clearInterval(timer)
-      }, duration * 1000 / end)
+      const totalFrames = duration * 120 // Increase total frames for slower animation (120 fps-based)
+      let frame = 0
+
+      const timer = setInterval(() => {
+        frame++
+        const progress = frame / totalFrames // Progress from 0 to 1
+        const easedProgress = easeOutCubic(progress) // Apply easing function
+        const currentValue = start + (end - start) * easedProgress
+        setCount(parseFloat(currentValue.toFixed(2))) // Update count with two decimal places
+
+        if (frame === totalFrames) {
+          setCount(end) // Ensure final value is exact
+          clearInterval(timer)
+        }
+      }, 1000 / 120) // Run at slower speed (120 frames over the duration)
 
       return () => clearInterval(timer)
     }
@@ -58,12 +72,12 @@ export default function Component() {
   }, [isHovering, controls])
 
   const stats = [
-    { icon: Trophy, label: 'KD比率', value: '0.2', description: '稳定如泰山，从不动摇' },
-    { icon: Target, label: '命中率', value: '10', description: '子弹珍贵，不舍得浪费' },
-    { icon: Crosshair, label: '爆头率', value: '1', description: '意外总是来得猝不及防' },
-    { icon: Skull, label: '场均击杀', value: '0.5', description: '质量重于数量' },
-    { icon: Clock, label: '平均生存时间', value: '15', description: '速战速决' },
-    { icon: Users, label: '团队贡献度', value: '-50', description: '负面榜样的力量' },
+    { icon: Trophy, label: 'KD比率', value: '0.41', description: '稳定如泰山，从不动摇' },
+    { icon: Target, label: '命中率', value: '18.89', description: '子弹珍贵，不舍得浪费' },
+    { icon: Crosshair, label: '爆头率', value: '38.67', description: '意外总是来得猝不及防' },
+    { icon: Skull, label: '场均击杀', value: '7.22', description: '质量重于数量' },
+    { icon: Clock, label: '平均载入时间', value: '114.51', description: '速战速决' },
+    { icon: Users, label: '团队贡献度', value: '5.31', description: '负面榜样的力量' },
   ]
 
   const achievements = [
@@ -96,13 +110,14 @@ export default function Component() {
             onMouseLeave={() => setIsHovering(false)}
             className="relative"
           >
-            <Avatar className="w-64 h-64 mx-auto border-8 border-yellow-500 shadow-2xl">
-              <AvatarImage src="/placeholder.svg?height=256&width=256" alt="Luatss" className="grayscale" />
-              <AvatarFallback>LT</AvatarFallback>
+            <Avatar className="w-64 h-64 mx-auto border-8 border-yellow-500 shadow-2xl rounded-full"> {/* 添加 rounded-full */}
+              <AvatarImage src={LuatssImage} alt="Luatss" className="grayscale rounded-full" /> {/* 添加 rounded-full */}
+              <AvatarFallback></AvatarFallback>
             </Avatar>
-            <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-purple-500 opacity-50 rounded-full animate-pulse"></div>
+
+            <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-purple-500 opacity-50 rounded-full animate-pulse"></div> {/* 确保该 div 也有 rounded-full */}
             <div className="absolute -top-4 -right-4 bg-yellow-500 text-black rounded-full p-2 text-xs font-bold animate-bounce">
-              传奇选手
+              ProMax
             </div>
           </motion.div>
           <motion.h1
