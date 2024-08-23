@@ -98,3 +98,4 @@ storybook-static/
 
 # Stylelint cache
 .stylelintcache
+package-lock.json
