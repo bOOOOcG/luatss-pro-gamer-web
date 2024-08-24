@@ -1,20 +1,19 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, useAnimation, useInView } from 'framer-motion'
-import { Avatar, AvatarFallback, AvatarImage } from './components/ui/Avatar.tsx';
-import { Button } from './components/ui/Button.tsx';
-import { Card, CardContent } from './components/ui/Card.tsx';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/Tabs.tsx';
+import { Avatar, AvatarFallback, AvatarImage } from './components/ui/Avatar';
+import { Button } from './components/ui/Button';
+import { Card, CardContent } from './components/ui/Card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/Tabs';
 import { Trophy, Target, Crosshair, Skull, Clock, Users, Gamepad2, Bomb, Zap, Headphones, Coffee } from 'lucide-react'
-import LuatssImage from './images/Luatss.png';
 
-const AnimatedCounter = ({ value, duration = 4 }) => {
+const AnimatedCounter = ({ value, duration = 4 }: { value: number, duration?: number }) => {
   const [count, setCount] = useState(0)
   const countRef = useRef(null)
   const controls = useAnimation()
   const inView = useInView(countRef)
 
   // easeOutCubic function for non-linear easing
-  const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3)
+  const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
   useEffect(() => {
     if (inView) {
@@ -23,7 +22,7 @@ const AnimatedCounter = ({ value, duration = 4 }) => {
         transition: { duration: 0.5 }
       })
       let start = 0
-      const end = parseFloat(value)
+      const end = typeof value === "string" ? parseFloat(value) : value;
       if (start === end) return
 
       const totalFrames = duration * 120 // Increase total frames for slower animation (120 fps-based)
@@ -49,7 +48,7 @@ const AnimatedCounter = ({ value, duration = 4 }) => {
   return <span ref={countRef}>{count}</span>
 }
 
-const GlitchText = ({ text }) => {
+const GlitchText = ({ text }: { text: string }) => {
   return (
     <span className="relative inline-block">
       <span className="relative z-10">{text}</span>
@@ -75,10 +74,10 @@ export default function Component() {
 
   const stats = [
     { icon: Trophy, label: 'KD比率', value: '0.41', description: '稳定如泰山，从不动摇' },
-    { icon: Target, label: '命中率', value: '18.89', description: '子弹珍贵，不舍得浪费' },
-    { icon: Crosshair, label: '爆头率', value: '38.67', description: '意外总是来得猝不及防' },
+    { icon: Target, label: '命中率', value: '18.89', description: '虽不多见，但一击命中注定。' },
+    { icon: Crosshair, label: '爆头率', value: '38.67', description: '"我架头线了啊"' },
     { icon: Skull, label: '场均击杀', value: '7.22', description: '质量重于数量' },
-    { icon: Clock, label: '平均载入时间', value: '114.51', description: '速战速决' },
+    { icon: Clock, label: '平均载入时间', value: '114.51', description: '最强的高手都是最后出现的' },
     { icon: Users, label: '团队贡献度', value: '5.31', description: '负面榜样的力量' },
   ]
 
@@ -113,7 +112,7 @@ export default function Component() {
             className="relative"
           >
             <Avatar className="w-64 h-64 mx-auto border-8 border-yellow-500 shadow-2xl rounded-full"> {/* 添加 rounded-full */}
-              <AvatarImage src={LuatssImage} alt="Luatss" className="grayscale rounded-full" /> {/* 添加 rounded-full */}
+              <AvatarImage alt="Luatss" className="grayscale rounded-full" /> {/* 添加 rounded-full */}
               <AvatarFallback></AvatarFallback>
             </Avatar>
 
@@ -163,7 +162,7 @@ export default function Component() {
                   <stat.icon className="w-16 h-16 mx-auto mb-4 text-yellow-500" />
                   <h3 className="text-2xl font-bold mb-2">{stat.label}</h3>
                   <p className="text-5xl font-bold text-yellow-500">
-                    <AnimatedCounter value={stat.value} />
+                  <AnimatedCounter value={parseFloat(stat.value)} />
                     {stat.label === '命中率' || stat.label === '爆头率' ? '%' : ''}
                     {stat.label === '平均生存时间' ? '秒' : ''}
                   </p>
