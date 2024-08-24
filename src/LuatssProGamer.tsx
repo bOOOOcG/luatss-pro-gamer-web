@@ -176,7 +176,7 @@ export default function Component() {
 
         <section className="mb-20">
           <h2 className="text-5xl font-bold mb-12 text-center">
-            <GlitchText text="Luatss的'传奇'历程" />
+            <GlitchText text="Luatss 的'传奇'历程" />
           </h2>
           <Tabs defaultValue="about" className="w-full">
             <TabsList className="grid w-full grid-cols-3">
@@ -237,7 +237,7 @@ export default function Component() {
 
         <section className="mb-20">
           <h2 className="text-5xl font-bold mb-12 text-center">
-            <GlitchText text="Luatss的'精彩'集锦" />
+            <GlitchText text="Luatss 的'精彩'集锦" />
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="bg-gray-800 border-yellow-500">
@@ -275,7 +275,7 @@ export default function Component() {
 
         <section className="mb-20">
           <h2 className="text-5xl font-bold mb-12 text-center">
-            <GlitchText text="Luatss的'独门'秘籍" />
+            <GlitchText text="Luatss 的'独门'秘籍" />
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="bg-gray-800 border-yellow-500">
@@ -330,7 +330,7 @@ export default function Component() {
 
         <section className="mb-20">
           <h2 className="text-5xl font-bold mb-12 text-center">
-            <GlitchText text="Luatss的粉丝留言" />
+            <GlitchText text="Luatss 的粉丝留言" />
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
@@ -360,7 +360,7 @@ export default function Component() {
 
         <section className="mb-20">
           <h2 className="text-5xl font-bold mb-12 text-center">
-            <GlitchText text="Luatss的游戏设置" />
+            <GlitchText text="Luatss 的游戏设置" />
           </h2>
           <Card className="bg-gray-800 border-yellow-500">
             <CardContent className="p-6 text-gray-200">
