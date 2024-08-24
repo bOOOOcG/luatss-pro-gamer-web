@@ -392,7 +392,7 @@ export default function Component() {
       </main>
 
       <footer className="bg-gray-900 text-center py-8">
-        <p className="text-lg">&copy; 2023 Enou Club. 所有权利保留。</p>
+        <p className="text-lg">&copy; 2021-2024 enou.org. 所有权利保留。</p>
         <p className="mt-2 text-sm text-gray-500">
           网站声明：本网站纯属娱乐，如有雷同，纯属巧合。Luatss是我们的好朋友，请勿模仿他的游戏风格。
           我们不对因观看本网站内容而产生的任何心理阴影负责。
