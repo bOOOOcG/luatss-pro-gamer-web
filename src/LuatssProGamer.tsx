@@ -5,6 +5,8 @@ import { Button } from './components/ui/Button';
 import { Card, CardContent } from './components/ui/Card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/Tabs';
 import { Trophy, Target, Crosshair, Skull, Clock, Users, Gamepad2, Bomb, Zap, Headphones, Coffee } from 'lucide-react'
+import { FaSteam } from 'react-icons/fa'; // 引入 Bilibili 和 Steam 的图标
+import { FaBilibili } from "react-icons/fa6";
 
 import LuatssAimTrainer from './LuatssAimTrainer';
 
@@ -112,12 +114,12 @@ export default function Component() {
             onMouseLeave={() => setIsHovering(false)}
             className="relative"
           >
-            <Avatar className="w-64 h-64 mx-auto border-8 border-yellow-500 shadow-2xl rounded-full"> 
-              <AvatarImage alt="Luatss" className="grayscale rounded-full" /> 
+            <Avatar className="w-64 h-64 mx-auto border-8 border-yellow-500 shadow-2xl rounded-full">
+              <AvatarImage alt="Luatss" className="grayscale rounded-full" />
               <AvatarFallback></AvatarFallback>
             </Avatar>
 
-            <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-purple-500 opacity-50 rounded-full animate-pulse"></div> 
+            <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-purple-500 opacity-50 rounded-full animate-pulse"></div>
             <div className="absolute -top-4 -right-4 bg-yellow-500 text-black rounded-full p-2 text-xs font-bold animate-bounce">
               ProMax
             </div>
@@ -390,6 +392,32 @@ export default function Component() {
           </Card>
         </section>
       </main>
+
+      <section className="mb-20">
+        <h2 className="text-5xl font-bold mb-12 text-center">
+          <GlitchText text="关注 Luatss" />
+        </h2>
+        <div className="flex justify-center space-x-8">
+          <a
+            href="https://space.bilibili.com/399112256"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center"
+          >
+            <FaBilibili className="w-8 h-8 mr-2" /> {/* Bilibili 图标 */}
+            <span>查看 Bilibili</span>
+          </a>
+          <a
+            href="https://steamcommunity.com/profiles/76561198977550341"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center"
+          >
+            <FaSteam className="w-8 h-8 mr-2" /> {/* Steam 图标 */}
+            <span>查看 Steam</span>
+          </a>
+        </div>
+      </section>
 
       <footer className="bg-gray-900 text-center py-8">
         <p className="text-lg">&copy; 2021-2024 enou.org. 所有权利保留。</p>
