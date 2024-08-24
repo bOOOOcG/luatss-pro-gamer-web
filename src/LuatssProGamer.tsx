@@ -6,6 +6,9 @@ import { Card, CardContent } from './components/ui/Card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/Tabs';
 import { Trophy, Target, Crosshair, Skull, Clock, Users, Gamepad2, Bomb, Zap, Headphones, Coffee } from 'lucide-react'
 
+// In your main component file
+import LuatssAimTrainer from './LuatssAimTrainer';
+
 const AnimatedCounter = ({ value, duration = 4 }: { value: number, duration?: number }) => {
   const [count, setCount] = useState(0)
   const countRef = useRef(null)
@@ -164,7 +167,7 @@ export default function Component() {
                   <stat.icon className="w-16 h-16 mx-auto mb-4 text-yellow-500" />
                   <h3 className="text-2xl font-bold mb-2">{stat.label}</h3>
                   <p className="text-5xl font-bold text-yellow-500">
-                  <AnimatedCounter value={parseFloat(stat.value)} />
+                    <AnimatedCounter value={parseFloat(stat.value)} />
                     {stat.label === '命中率' || stat.label === '爆头率' ? '%' : ''}
                     {stat.label === '平均生存时间' ? '秒' : ''}
                   </p>
@@ -350,6 +353,13 @@ export default function Component() {
               </Card>
             ))}
           </div>
+        </section>
+
+        <section className="mb-20">
+          <h2 className="text-5xl font-bold mb-12 text-center">
+            <GlitchText text="Luatss的瞄准训练器" />
+          </h2>
+          <LuatssAimTrainer />
         </section>
 
         <section className="mb-20">
