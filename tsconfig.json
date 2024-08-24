@@ -19,8 +19,9 @@
           "name": "next"
         }
       ],
+      "baseUrl": ".",  // 根目录为当前目录
       "paths": {
-        "@/*": ["src/*"]
+        "@/*": ["src/*"]  // 设置 @ 指向 src 文件夹
       }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

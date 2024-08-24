@@ -6,7 +6,6 @@ import { Card, CardContent } from './components/ui/Card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/Tabs';
 import { Trophy, Target, Crosshair, Skull, Clock, Users, Gamepad2, Bomb, Zap, Headphones, Coffee } from 'lucide-react'
 
-// In your main component file
 import LuatssAimTrainer from './LuatssAimTrainer';
 
 const AnimatedCounter = ({ value, duration = 4 }: { value: number, duration?: number }) => {
@@ -15,7 +14,6 @@ const AnimatedCounter = ({ value, duration = 4 }: { value: number, duration?: nu
   const controls = useAnimation()
   const inView = useInView(countRef)
 
-  // easeOutCubic function for non-linear easing
   const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
   useEffect(() => {
@@ -28,21 +26,21 @@ const AnimatedCounter = ({ value, duration = 4 }: { value: number, duration?: nu
       const end = typeof value === "string" ? parseFloat(value) : value;
       if (start === end) return
 
-      const totalFrames = duration * 120 // Increase total frames for slower animation (120 fps-based)
+      const totalFrames = duration * 120
       let frame = 0
 
       const timer = setInterval(() => {
         frame++
-        const progress = frame / totalFrames // Progress from 0 to 1
-        const easedProgress = easeOutCubic(progress) // Apply easing function
+        const progress = frame / totalFrames
+        const easedProgress = easeOutCubic(progress)
         const currentValue = start + (end - start) * easedProgress
-        setCount(parseFloat(currentValue.toFixed(2))) // Update count with two decimal places
+        setCount(parseFloat(currentValue.toFixed(2)))
 
         if (frame === totalFrames) {
-          setCount(end) // Ensure final value is exact
+          setCount(end)
           clearInterval(timer)
         }
-      }, 1000 / 120) // Run at slower speed (120 frames over the duration)
+      }, 1000 / 120)
 
       return () => clearInterval(timer)
     }
@@ -60,8 +58,6 @@ const GlitchText = ({ text }: { text: string }) => {
     </span>
   );
 };
-
-
 
 export default function Component() {
   const [isHovering, setIsHovering] = useState(false)
@@ -103,7 +99,7 @@ export default function Component() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800 text-white overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-800 to-violet-900 text-white overflow-hidden">
       <header className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -116,12 +112,12 @@ export default function Component() {
             onMouseLeave={() => setIsHovering(false)}
             className="relative"
           >
-            <Avatar className="w-64 h-64 mx-auto border-8 border-yellow-500 shadow-2xl rounded-full"> {/* 添加 rounded-full */}
-              <AvatarImage alt="Luatss" className="grayscale rounded-full" /> {/* 添加 rounded-full */}
+            <Avatar className="w-64 h-64 mx-auto border-8 border-yellow-500 shadow-2xl rounded-full"> 
+              <AvatarImage alt="Luatss" className="grayscale rounded-full" /> 
               <AvatarFallback></AvatarFallback>
             </Avatar>
 
-            <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-purple-500 opacity-50 rounded-full animate-pulse"></div> {/* 确保该 div 也有 rounded-full */}
+            <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-purple-500 opacity-50 rounded-full animate-pulse"></div> 
             <div className="absolute -top-4 -right-4 bg-yellow-500 text-black rounded-full p-2 text-xs font-bold animate-bounce">
               ProMax
             </div>
@@ -357,7 +353,7 @@ export default function Component() {
 
         <section className="mb-20">
           <h2 className="text-5xl font-bold mb-12 text-center">
-            <GlitchText text="Luatss的瞄准训练器" />
+            <GlitchText text="和 Luatss 比瞄准能力" />
           </h2>
           <LuatssAimTrainer />
         </section>
