@@ -353,7 +353,7 @@ export default function Component() {
             {[
               { name: "头号粉丝", message: "Luatss 就是我的精神支柱，每次看他比赛都觉得自己还行！" },
               { name: "对手", message: "感谢 Luatss，还得假装骂我们，他的演技确实比枪法靠谱。" },
-              { name: "队友", message: "对此事拒绝发表评论。" },
+              { name: "队友", message: "队友拒绝了我们发起的留言邀请。" },
               { name: "解说员", message: "每次解说 Luatss 的比赛，我都会思考：Luatss到底赢了吗？" },
               { name: "战队经理", message: "签下 Luatss 后，我掌握了团队冲突管理。" },
               { name: "Valve员工", message: "我们正在考虑基于 Luatss 设计一个新的'地图喷漆'。不过得等我们做完 Half-Life 3" },
@@ -417,22 +417,22 @@ export default function Component() {
             <CardContent className="p-6">
               <div className="flex justify-center space-x-8">
                 <a
-                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  href="https://space.bilibili.com/399112256"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center"
                 >
                   <FaBilibili className="w-8 h-8 mr-2" /> {/* Bilibili 图标 */}
-                  <span>查看 Bilibili</span>
+                  <span>Bilibili</span>
                 </a>
                 <a
-                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  href="https://steamcommunity.com/profiles/76561198977550341/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center"
                 >
                   <FaSteam className="w-8 h-8 mr-2" /> {/* Steam 图标 */}
-                  <span>查看 Steam</span>
+                  <span>Steam</span>
                 </a>
                 <a
                   href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
