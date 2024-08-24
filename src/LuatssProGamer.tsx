@@ -7,7 +7,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/Tabs';
 import { Trophy, Target, Crosshair, Skull, Clock, Users, Gamepad2, Bomb, Zap, Headphones, Coffee } from 'lucide-react'
 import { FaSteam } from 'react-icons/fa'; // 引入 Bilibili 和 Steam 的图标
 import { FaBilibili } from "react-icons/fa6";
-
+import { FaVideo, FaDollarSign } from "react-icons/fa"; // 引入相关图标
+import { TbBrandOnlyfans } from "react-icons/tb"; // 导入 OnlyFans 的图标
+import { GiFlashGrenade } from "react-icons/gi";
 import LuatssAimTrainer from './LuatssAimTrainer';
 
 const AnimatedCounter = ({ value, duration = 4 }: { value: number, duration?: number }) => {
@@ -86,17 +88,20 @@ export default function Component() {
     '战绩表大面积红rating',
     '在1000场比赛中以倒数第一的身份保持嘲讽敌人',
     '单场比赛9杀20死仍然赢得了游戏',
-    '成功被500+玩家举报作弊（开挂）',
+    '成功被500+玩家举报作弊（实际上是队友很恼火 以及对面被嘲讽急眼）',
     '创造CSGO史上综合最低素质记录',
-    '被Valve官方认证为"最具潜力退役选手"',
+    '被Valve官方认证为"最具潜力的CS Brawlhalla分区选手"',
+    '永远稳定的扔着白队友的闪光弹, 导致队友每次经过一个点位 只要有他在, 100%被白',
   ]
 
   const quotes = [
-    { text: '"你看我不杀人都能赢。"', author: 'Luatss 赛后采访' },
+    { text: '"你看我不杀人都能赢, 谁才是高手不用我说了吧。"', author: 'Luatss 赛后采访' },
     { text: '"真的再单开把沙二我绝对有手感。"', author: 'Luatss 连续50场红rating后' },
     { text: '"勤能补拙, 笨鸟先飞。"', author: 'Luatss 对队友的评价' },
     { text: '"ez收徒, 叫你家大人来打。"', author: 'Luatss 对敌人的评价' },
     { text: '"我的枪法很准，只是我鼠标有点问题。"', author: 'Luatss 解释低命中率' },
+    { text: '"……@#&*?!%^……反正那是你的问题, 我这个闪就是牛逼。"', author: 'Luatss 解释闪光弹争议' },
+    { text: '"我在架啊。架了啊! 一直都在架啊! "', author: 'Luatss 面对"你怎么不架头线"问题' },
     { text: '"我是来改变游戏的，不是来玩游戏的。"', author: 'Luatss 谈及职业生涯' },
   ]
 
@@ -153,28 +158,38 @@ export default function Component() {
       </header>
 
       <main className="container mx-auto px-4 py-16">
-        <section className="mb-20">
-          <h2 className="text-5xl font-bold mb-12 text-center">
-            <GlitchText text="Luatss 近期'辉煌'战绩" />
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {stats.map((stat, index) => (
-              <Card key={index} className="bg-gray-800 border-yellow-500 overflow-hidden">
-                <CardContent className="p-6 text-center relative">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 via-red-500 to-purple-500"></div>
-                  <stat.icon className="w-16 h-16 mx-auto mb-4 text-yellow-500" />
-                  <h3 className="text-2xl font-bold mb-2">{stat.label}</h3>
-                  <p className="text-5xl font-bold text-yellow-500">
-                    <AnimatedCounter value={parseFloat(stat.value)} />
-                    {stat.label === '命中率' || stat.label === '爆头率' ? '%' : ''}
-                    {stat.label === '平均生存时间' ? '秒' : ''}
-                  </p>
-                  <p className="mt-2 text-gray-400">{stat.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
+        <main className="container mx-auto px-4 py-16">
+          <section className="mb-20">
+            <h2 className="text-5xl font-bold mb-12 text-center relative">
+              <GlitchText text="Luatss 近期'辉煌'战绩" />
+              <span className="text-sm align-super text-gray-400 ml-4 cursor-pointer relative group" style={{ top: '-0.5em' }}>
+                (*)
+                {/* Tooltip 内容 */}
+                <div className="hidden group-hover:block absolute bottom-full left-1/2 transform -translate-x-1/2 mb-6 bg-gray-800 text-white text-sm px-4 py-2 rounded shadow-lg" style={{ whiteSpace: 'nowrap', width: 'max-content' }}>
+                  战绩统计基于抽取的2024年7月份的8把游戏 + S16赛季的第一把游戏
+                </div>
+              </span>
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {stats.map((stat, index) => (
+                <Card key={index} className="bg-gray-800 border-yellow-500 overflow-hidden">
+                  <CardContent className="p-6 text-center relative">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 via-red-500 to-purple-500"></div>
+                    <stat.icon className="w-16 h-16 mx-auto mb-4 text-yellow-500" />
+                    <h3 className="text-2xl font-bold mb-2">{stat.label}</h3>
+                    <p className="text-5xl font-bold text-yellow-500">
+                      <AnimatedCounter value={parseFloat(stat.value)} />
+                      {stat.label === '命中率' || stat.label === '爆头率' ? '%' : ''}
+                      {stat.label === '平均生存时间' ? '秒' : ''}
+                    </p>
+                    <p className="mt-2 text-gray-400">{stat.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </section>
+        </main>
 
         <section className="mb-20">
           <h2 className="text-5xl font-bold mb-12 text-center">
@@ -190,20 +205,20 @@ export default function Component() {
               <Card>
                 <CardContent className="p-6 text-gray-200">
                   <p className="mb-4 text-lg">
-                    Luatss，Enou Club"人才库"中的璀璨明珠，用他那令人叹为观止的0.2 KD比率彻底重新定义了CSGO中"一致性"的含义。
-                    他的游戏风格可以用"独树一帜"来形容——每一次出击都是对常规战术的挑战，每一次死亡都是对队友心理承受能力的考验。
+                    Luatss，是 Enou Club 中冉冉升起的一颗"闪亮之星"，他那传奇般的CS能力，彻底重塑了人们对“稳定”的定义。
+                    他的游戏风格可以说是与众不同——每次进攻都如同一场对传统策略的大胆实验，而每次倒下则是对队友心理承受力的极限挑战。
                   </p>
                   <p className="mb-4 text-lg">
-                    Luatss最为人称道的能力是他那堪称艺术的"战术送人头"。他总能以最快的速度找到敌人，然后以最快的速度返回出生点。
-                    这种高效率的游戏方式让队友们常常怀疑他是否在暗中为敌队效力，但Luatss坚持认为这是一种"高级战术"。
+                    Luatss 的“闪光弹战术”已经成为一种经典。他总是能够以最快的速度找到敌人，然后用“精准无比”的闪光弹成功让队友瞬间失明。
+                    每当队友被他“白”得看不见时，Luatss 总会振振有词地怪队友站位不对，完全无视他那神乎其技的“自家助攻”。队友们虽然无奈，但也不得不承认，只有 Luatss 能把闪光弹玩得如此出神入化，并且还能理直气壮地把锅甩出去。
                   </p>
                   <p className="mb-4 text-lg">
-                    尽管技术水平常常让队友和对手alike目瞪口呆，Luatss却保持着一种令人敬畏的自信。
-                    他坚信自己是被错误统计数据低估的天才，而这种不屈不挠的精神正是当代年轻人所需要的。
+                    尽管他的技术水平常常让队友和对手瞠目结舌，Luatss 却始终保持着令人敬畏的自信。
+                    他坚信自己是被数据误解的天才，这种坚韧不拔的精神，正是当今年轻人所需要的榜样。
                   </p>
                   <p className="text-lg">
-                    Luatss不仅是一名选手，更是一种现象——他证明了在CSGO这个竞技舞台上，
-                    有时候"不知者无畏"和"越菜越爱玩"这样的品质，才是真正的制胜法宝。
+                    Luatss 不仅仅是一名选手，更是一种现象。他用行动证明了在 CSGO 的竞技舞台上，
+                    有时候“无知无畏”和“菜鸟的自信”才是通往胜利的真正秘诀。
                   </p>
                 </CardContent>
               </Card>
@@ -282,19 +297,19 @@ export default function Component() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="bg-gray-800 border-yellow-500">
               <CardContent className="p-6 text-center">
-                <Headphones className="w-16 h-16 mx-auto mb-4 text-yellow-500" />
-                <h3 className="text-2xl font-bold mb-2">听声辨位</h3>
+                <Coffee className="w-16 h-16 mx-auto mb-4 text-yellow-500" />
+                <h3 className="text-2xl font-bold mb-2">养生打法</h3>
                 <p className="text-gray-300">
-                  Luatss独创的"听声辨位"技术：无论敌人在哪，他总能第一时间找到并送上人头。
+                  Luatss 的"养生打法"：每局比赛保证充足的休息时间，绝不过度劳累。
                 </p>
               </CardContent>
             </Card>
             <Card className="bg-gray-800 border-yellow-500">
               <CardContent className="p-6 text-center">
-                <Coffee className="w-16 h-16 mx-auto mb-4 text-yellow-500" />
-                <h3 className="text-2xl font-bold mb-2">养生打法</h3>
+                <GiFlashGrenade className="w-16 h-16 mx-auto mb-4 text-yellow-500" />
+                <h3 className="text-2xl font-bold mb-2">道具使用</h3>
                 <p className="text-gray-300">
-                  Luatss的"养生打法"：每局比赛保证充足的休息时间，绝不过度劳累。
+                  Luatss 的"闪光弹"：每次都能在关键时刻精准丢出一颗“完美”闪光弹，然后用无比自信的语气解释这颗闪光弹的重要性和高级性。至于队友被闪到——那肯定是队友没站好位置，完全不是道具的问题。
                 </p>
               </CardContent>
             </Card>
@@ -303,7 +318,7 @@ export default function Component() {
                 <Users className="w-16 h-16 mx-auto mb-4 text-yellow-500" />
                 <h3 className="text-2xl font-bold mb-2">团队激励</h3>
                 <p className="text-gray-300">
-                  Luatss的"团队激励"：通过自身表现，激发队友的求生欲和胜利欲望。
+                  Luatss 的"团队激励"：通过不断“善意”的指点和“*热情*”的沟通，成功让队友从低血压变成红温状态。
                 </p>
               </CardContent>
             </Card>
@@ -336,12 +351,12 @@ export default function Component() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { name: "头号粉丝", message: "Luatss就是我的人生导师！" },
-              { name: "对手", message: "求求你来我们队吧，保证不打你！" },
-              { name: "队友", message: "谢谢你，让我知道了什么是真正的绝望。" },
-              { name: "解说员", message: "每次解说Luatss的比赛，我都不知道该说什么好。" },
-              { name: "战队经理", message: "签下Luatss是我职业生涯中最'明智'的决定。" },
-              { name: "Valve员工", message: "我们正在考虑为Luatss设计一个专属的'成就'。" },
+              { name: "头号粉丝", message: "Luatss 就是我的精神支柱，每次看他比赛都觉得自己还行！" },
+              { name: "对手", message: "感谢 Luatss，还得假装骂我们，他的演技确实比枪法靠谱。" },
+              { name: "队友", message: "对此事拒绝发表评论。" },
+              { name: "解说员", message: "每次解说 Luatss 的比赛，我都会思考：Luatss到底赢了吗？" },
+              { name: "战队经理", message: "签下 Luatss 后，我掌握了团队冲突管理。" },
+              { name: "Valve员工", message: "我们正在考虑基于 Luatss 设计一个新的'地图喷漆'。不过得等我们做完 Half-Life 3" },
             ].map((fan, index) => (
               <Card key={index} className="bg-gray-800 border-yellow-500">
                 <CardContent className="p-6 text-gray-200">
@@ -351,13 +366,6 @@ export default function Component() {
               </Card>
             ))}
           </div>
-        </section>
-
-        <section className="mb-20">
-          <h2 className="text-5xl font-bold mb-12 text-center">
-            <GlitchText text="和 Luatss 比瞄准能力" />
-          </h2>
-          <LuatssAimTrainer />
         </section>
 
         <section className="mb-20">
@@ -395,27 +403,58 @@ export default function Component() {
 
       <section className="mb-20">
         <h2 className="text-5xl font-bold mb-12 text-center">
+          <GlitchText text="和 Luatss 比瞄准能力" />
+        </h2>
+        <LuatssAimTrainer />
+      </section>
+
+      <section className="mb-20">
+        <h2 className="text-5xl font-bold mb-12 text-center">
           <GlitchText text="关注 Luatss" />
         </h2>
-        <div className="flex justify-center space-x-8">
-          <a
-            href="https://space.bilibili.com/399112256"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center"
-          >
-            <FaBilibili className="w-8 h-8 mr-2" /> {/* Bilibili 图标 */}
-            <span>查看 Bilibili</span>
-          </a>
-          <a
-            href="https://steamcommunity.com/profiles/76561198977550341"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center"
-          >
-            <FaSteam className="w-8 h-8 mr-2" /> {/* Steam 图标 */}
-            <span>查看 Steam</span>
-          </a>
+        <div className="flex justify-center">
+          <Card className="bg-gray-800 border-yellow-500 max-w-3xl w-full">
+            <CardContent className="p-6">
+              <div className="flex justify-center space-x-8">
+                <a
+                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center"
+                >
+                  <FaBilibili className="w-8 h-8 mr-2" /> {/* Bilibili 图标 */}
+                  <span>查看 Bilibili</span>
+                </a>
+                <a
+                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center"
+                >
+                  <FaSteam className="w-8 h-8 mr-2" /> {/* Steam 图标 */}
+                  <span>查看 Steam</span>
+                </a>
+                <a
+                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center"
+                >
+                  <FaVideo className="w-8 h-8 mr-2" /> {/* 通用视频图标 */}
+                  <span>Pornhub</span>
+                </a>
+                <a
+                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center"
+                >
+                  <TbBrandOnlyfans className="w-8 h-8 mr-2" /> {/* OnlyFans 图标 */}
+                  <span>OnlyFans</span>
+                </a>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
