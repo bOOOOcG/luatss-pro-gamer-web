@@ -9,7 +9,11 @@ const LuatssAimTrainer: React.FC = () => {
   const [gameState, setGameState] = useState<'idle' | 'playing' | 'ended'>('idle');
   const [targetPosition, setTargetPosition] = useState({ x: 0, y: 0 });
   const [misses, setMisses] = useState(0);
+  const [highScore, setHighScore] = useState<number>(0);
   const gameAreaRef = useRef<HTMLDivElement>(null);
+
+  const hitSoundRef = useRef<HTMLAudioElement>(null);
+  const missSoundRef = useRef<HTMLAudioElement>(null);
 
   const startGame = () => {
     setScore(0);
@@ -21,6 +25,9 @@ const LuatssAimTrainer: React.FC = () => {
 
   const endGame = () => {
     setGameState('ended');
+    if (score > highScore) {
+      setHighScore(score);
+    }
   };
 
   const moveTarget = () => {
@@ -34,12 +41,14 @@ const LuatssAimTrainer: React.FC = () => {
 
   const hitTarget = () => {
     setScore(score + 1);
+    hitSoundRef.current?.play();
     moveTarget();
   };
 
   const missTarget = (e: React.MouseEvent<HTMLDivElement>) => {
     if (gameState === 'playing' && e.target === e.currentTarget) {
       setMisses(misses + 1);
+      missSoundRef.current?.play();
     }
   };
 
@@ -80,18 +89,26 @@ const LuatssAimTrainer: React.FC = () => {
             <motion.div
               className="absolute w-12 h-12 bg-red-500 rounded-full"
               style={{ left: targetPosition.x, top: targetPosition.y }}
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ repeat: Infinity, duration: 0.5 }}
+              animate={{ scale: [1, 1.3, 1], rotate: [0, 360, 0] }}
+              transition={{ repeat: Infinity, duration: 1 }}
               onClick={hitTarget}
             />
           )}
           {gameState === 'idle' && (
-            <div className="absolute inset-0 flex items-center justify-center">
+            <motion.div
+              className="absolute inset-0 flex items-center justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
               <p className="text-2xl text-gray-400">点击开始按钮开始游戏</p>
-            </div>
+            </motion.div>
           )}
           {gameState === 'ended' && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <motion.div
+              className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
               <div className="text-center">
                 <p className="text-3xl mb-2">游戏结束!</p>
                 <p className="text-xl">你的得分: {score}</p>
@@ -105,8 +122,9 @@ const LuatssAimTrainer: React.FC = () => {
                     ? "还不错，但要成为Luatss还需要继续努力！"
                     : "太准了！你确定你是Luatss吗？"}
                 </p>
+                <p className="text-lg mt-2 text-yellow-500">最高得分: {highScore}</p>
               </div>
-            </div>
+            </motion.div>
           )}
         </div>
         <div className="mt-4 flex justify-center">
@@ -119,6 +137,8 @@ const LuatssAimTrainer: React.FC = () => {
           </Button>
         </div>
       </CardContent>
+      <audio ref={hitSoundRef} src="/sounds/hit.mp3" />
+      <audio ref={missSoundRef} src="/sounds/miss.mp3" />
     </Card>
   );
 };
