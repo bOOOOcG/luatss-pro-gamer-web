@@ -1,20 +1,19 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, useAnimation, useInView } from 'framer-motion'
-import { Avatar, AvatarFallback, AvatarImage } from './components/ui/Avatar.tsx';
-import { Button } from './components/ui/Button.tsx';
-import { Card, CardContent } from './components/ui/Card.tsx';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/Tabs.tsx';
+import { Avatar, AvatarFallback, AvatarImage } from './components/ui/Avatar';
+import { Button } from './components/ui/Button';
+import { Card, CardContent } from './components/ui/Card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/Tabs';
 import { Trophy, Target, Crosshair, Skull, Clock, Users, Gamepad2, Bomb, Zap, Headphones, Coffee } from 'lucide-react'
-import LuatssImage from './images/Luatss.png';
 
-const AnimatedCounter = ({ value, duration = 4 }) => {
+const AnimatedCounter = ({ value, duration = 4 }: { value: number, duration?: number }) => {
   const [count, setCount] = useState(0)
   const countRef = useRef(null)
   const controls = useAnimation()
   const inView = useInView(countRef)
 
   // easeOutCubic function for non-linear easing
-  const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3)
+  const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
   useEffect(() => {
     if (inView) {
@@ -23,7 +22,7 @@ const AnimatedCounter = ({ value, duration = 4 }) => {
         transition: { duration: 0.5 }
       })
       let start = 0
-      const end = parseFloat(value)
+      const end = typeof value === "string" ? parseFloat(value) : value;
       if (start === end) return
 
       const totalFrames = duration * 120 // Increase total frames for slower animation (120 fps-based)
@@ -49,12 +48,12 @@ const AnimatedCounter = ({ value, duration = 4 }) => {
   return <span ref={countRef}>{count}</span>
 }
 
-const GlitchText = ({ text }) => {
+const GlitchText = ({ text }: { text: string }) => {
   return (
     <span className="relative inline-block">
       <span className="relative z-10">{text}</span>
-      <span className="absolute top-0 left-0 text-red-500 opacity-70" style={{ transform: 'translateX(-5px)' }}>{text}</span>
-      <span className="absolute top-0 left-0 text-blue-500 opacity-70" style={{ transform: 'translateX(5px)' }}>{text}</span>
+      <span className="absolute top-0 left-0 text-red-500 opacity-70" style={{ transform: 'translateX(-8px)' }}>{text}</span>
+      <span className="absolute top-0 left-0 text-blue-500 opacity-70" style={{ transform: 'translateX(8px)' }}>{text}</span>
     </span>
   );
 };
@@ -75,26 +74,28 @@ export default function Component() {
 
   const stats = [
     { icon: Trophy, label: 'KD比率', value: '0.41', description: '稳定如泰山，从不动摇' },
-    { icon: Target, label: '命中率', value: '18.89', description: '子弹珍贵，不舍得浪费' },
-    { icon: Crosshair, label: '爆头率', value: '38.67', description: '意外总是来得猝不及防' },
+    { icon: Target, label: '命中率', value: '18.89', description: '虽不多见，但一击命中注定。' },
+    { icon: Crosshair, label: '爆头率', value: '38.67', description: '"我架头线了啊"' },
     { icon: Skull, label: '场均击杀', value: '7.22', description: '质量重于数量' },
-    { icon: Clock, label: '平均载入时间', value: '114.51', description: '速战速决' },
+    { icon: Clock, label: '平均载入时间', value: '1145.14', description: '最强的高手都是最后出现的' },
     { icon: Users, label: '团队贡献度', value: '5.31', description: '负面榜样的力量' },
   ]
 
   const achievements = [
-    '连续1000场比赛保持0.2 KD',
-    '单场比赛0杀22死的奇迹',
+    '战绩表大面积红rating',
+    '在1000场比赛中以倒数第一的身份保持嘲讽敌人',
+    '单场比赛9杀20死仍然赢得了游戏',
     '成功被500+玩家举报作弊（开挂）',
-    '创造CSGO史上最低命中率记录',
+    '创造CSGO史上综合最低素质记录',
     '被Valve官方认证为"最具潜力退役选手"',
   ]
 
   const quotes = [
-    { text: '"我不是针对谁，我是说在座的各位都是垃圾。"', author: 'Luatss 赛后采访' },
-    { text: '"输赢不重要，重要的是我玩得开心。"', author: 'Luatss 连续50场0杀后' },
-    { text: '"我的队友都是来拖我后腿的。"', author: 'Luatss 对队友的评价' },
-    { text: '"我的枪法很准，只是准星不听使唤。"', author: 'Luatss 解释低命中率' },
+    { text: '"你看我不杀人都能赢。"', author: 'Luatss 赛后采访' },
+    { text: '"真的再单开把沙二我绝对有手感。"', author: 'Luatss 连续50场红rating后' },
+    { text: '"勤能补拙, 笨鸟先飞。"', author: 'Luatss 对队友的评价' },
+    { text: '"ez收徒, 叫你家大人来打。"', author: 'Luatss 对敌人的评价' },
+    { text: '"我的枪法很准，只是我鼠标有点问题。"', author: 'Luatss 解释低命中率' },
     { text: '"我是来改变游戏的，不是来玩游戏的。"', author: 'Luatss 谈及职业生涯' },
   ]
 
@@ -113,7 +114,7 @@ export default function Component() {
             className="relative"
           >
             <Avatar className="w-64 h-64 mx-auto border-8 border-yellow-500 shadow-2xl rounded-full"> {/* 添加 rounded-full */}
-              <AvatarImage src={LuatssImage} alt="Luatss" className="grayscale rounded-full" /> {/* 添加 rounded-full */}
+              <AvatarImage alt="Luatss" className="grayscale rounded-full" /> {/* 添加 rounded-full */}
               <AvatarFallback></AvatarFallback>
             </Avatar>
 
@@ -153,7 +154,7 @@ export default function Component() {
       <main className="container mx-auto px-4 py-16">
         <section className="mb-20">
           <h2 className="text-5xl font-bold mb-12 text-center">
-            <GlitchText text="Luatss的'辉煌'战绩" />
+            <GlitchText text="Luatss 近期'辉煌'战绩" />
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {stats.map((stat, index) => (
@@ -163,7 +164,7 @@ export default function Component() {
                   <stat.icon className="w-16 h-16 mx-auto mb-4 text-yellow-500" />
                   <h3 className="text-2xl font-bold mb-2">{stat.label}</h3>
                   <p className="text-5xl font-bold text-yellow-500">
-                    <AnimatedCounter value={stat.value} />
+                  <AnimatedCounter value={parseFloat(stat.value)} />
                     {stat.label === '命中率' || stat.label === '爆头率' ? '%' : ''}
                     {stat.label === '平均生存时间' ? '秒' : ''}
                   </p>
