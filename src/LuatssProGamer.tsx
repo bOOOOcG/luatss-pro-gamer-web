@@ -15,28 +15,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/Tabs';
 import { LanguageButton } from './components/ui/LanguageButton';
 import { scrollToNextSection } from './lib/scroll';
 
-const ParticleBackground = () => {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(100)].map((_, i) => ( 
-        <div
-          key={i}
-          className="absolute bg-yellow-500 rounded-full"
-          style={{
-            width: Math.random() * 8 + 3 + 'px',  
-            height: Math.random() * 8 + 3 + 'px',
-            left: Math.random() * 100 + '%',
-            top: Math.random() * 100 + '%',
-            opacity: Math.random() * 0.5 + 0.5,  
-            animation: `float ${Math.random() * 15 + 10}s ease-in-out infinite`,  
-            transform: `translateY(${Math.random() * 20 - 10}px)`  
-          }}
-        />
-      ))}
-    </div>
-  )
-}
-
 const AnimatedCounter = ({ value, duration = 4 }: { value: number, duration?: number }) => {
   const [count, setCount] = useState(0)
   const countRef = useRef(null)
@@ -132,7 +110,6 @@ export default function Component() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-800 to-violet-900 text-white overflow-hidden">
-      <ParticleBackground /> {/* 新增的背景动画组件 */}
       {/*<LanguageButton onClick={toggleLanguage} language={language} /> */}
       <header className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
