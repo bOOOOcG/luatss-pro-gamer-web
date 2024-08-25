@@ -86,7 +86,7 @@ export default function Component() {
     { icon: Target, label: '命中率', value: '18.89', description: '虽不多见，但一击命中注定。' },
     { icon: Crosshair, label: '爆头率', value: '38.67', description: '"我架头线了啊"' },
     { icon: Skull, label: '场均击杀', value: '7.22', description: '质量重于数量' },
-    { icon: Clock, label: '平均载入时间', value: '1145.14', description: '最强的高手都是最后出现的' },
+    { icon: Clock, label: '平均载入时间', value: '1145.14', description: '真正的高手都是最后出现的' },
     { icon: Users, label: '团队贡献度', value: '5.31', description: '负面榜样的力量' },
   ]
 
