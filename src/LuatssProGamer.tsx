@@ -15,13 +15,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/Tabs';
 import { LanguageButton } from './components/ui/LanguageButton';
 import { scrollToNextSection } from './lib/scroll';
 
-const AnimatedCounter = ({ value, duration = 4 }: { value: number, duration?: number }) => {
+const AnimatedCounter = ({ value, duration = 6 }: { value: number, duration?: number }) => {
   const [count, setCount] = useState(0)
   const countRef = useRef(null)
   const controls = useAnimation()
   const inView = useInView(countRef)
 
-  const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+  // 调整 easeOutCubic 函数，使动画更非线性
+  const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 5);
 
   useEffect(() => {
     if (inView) {
@@ -33,7 +34,8 @@ const AnimatedCounter = ({ value, duration = 4 }: { value: number, duration?: nu
       const end = typeof value === "string" ? parseFloat(value) : value;
       if (start === end) return
 
-      const totalFrames = duration * 120
+      // 增加 totalFrames 以减慢动画
+      const totalFrames = duration * 60
       let frame = 0
 
       const timer = setInterval(() => {
@@ -47,7 +49,7 @@ const AnimatedCounter = ({ value, duration = 4 }: { value: number, duration?: nu
           setCount(end)
           clearInterval(timer)
         }
-      }, 1000 / 120)
+      }, 1000 / 60)
 
       return () => clearInterval(timer)
     }
@@ -55,6 +57,7 @@ const AnimatedCounter = ({ value, duration = 4 }: { value: number, duration?: nu
 
   return <span ref={countRef}>{count}</span>
 }
+
 
 const GlitchText = ({ text }: { text: string }) => {
   return (
