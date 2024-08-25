@@ -401,26 +401,26 @@ export default function Component() {
         </section>
       </main>
 
-      <section className="mb-20">
+      <section className="mb-20 px-4">
         <h2 className="text-5xl font-bold mb-12 text-center">
           <GlitchText text="和 Luatss 比瞄准能力" />
         </h2>
         <LuatssAimTrainer />
       </section>
 
-      <section className="mb-20">
+      <section className="mb-20 px-4">
         <h2 className="text-5xl font-bold mb-12 text-center">
           <GlitchText text="关注 Luatss" />
         </h2>
         <div className="flex justify-center">
           <Card className="bg-gray-800 border-yellow-500 max-w-3xl w-full">
             <CardContent className="p-6">
-              <div className="flex justify-center space-x-8">
+              <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8 justify-items-center">
                 <a
                   href="https://space.bilibili.com/399112256"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center"
+                  className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center justify-center"
                 >
                   <FaBilibili className="w-8 h-8 mr-2" /> {/* Bilibili 图标 */}
                   <span>Bilibili</span>
@@ -429,7 +429,7 @@ export default function Component() {
                   href="https://steamcommunity.com/profiles/76561198977550341/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center"
+                  className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center justify-center"
                 >
                   <FaSteam className="w-8 h-8 mr-2" /> {/* Steam 图标 */}
                   <span>Steam</span>
@@ -438,7 +438,7 @@ export default function Component() {
                   href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center"
+                  className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center justify-center"
                 >
                   <FaVideo className="w-8 h-8 mr-2" /> {/* 通用视频图标 */}
                   <span>Pornhub</span>
@@ -447,7 +447,7 @@ export default function Component() {
                   href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center"
+                  className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center justify-center"
                 >
                   <TbBrandOnlyfans className="w-8 h-8 mr-2" /> {/* OnlyFans 图标 */}
                   <span>OnlyFans</span>
