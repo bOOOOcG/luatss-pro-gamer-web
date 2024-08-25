@@ -5,6 +5,7 @@ import { FaSteam } from 'react-icons/fa'; // 引入 Bilibili 和 Steam 的图标
 import { FaBilibili } from "react-icons/fa6";
 import { FaVideo, FaDollarSign } from "react-icons/fa"; // 引入相关图标
 import { TbBrandOnlyfans } from "react-icons/tb"; // 导入 OnlyFans 的图标
+import { GiFishingHook } from "react-icons/gi";
 import { GiFlashGrenade } from "react-icons/gi";
 
 import LuatssAimTrainer from './LuatssAimTrainer';
@@ -300,10 +301,10 @@ export default function Component() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="bg-gray-800 border-yellow-500">
               <CardContent className="p-6 text-center">
-                <Coffee className="w-16 h-16 mx-auto mb-4 text-yellow-500" />
-                <h3 className="text-2xl font-bold mb-2">养生打法</h3>
+                <GiFishingHook className="w-16 h-16 mx-auto mb-4 text-yellow-500" />
+                <h3 className="text-2xl font-bold mb-2">胜利钩锁</h3>
                 <p className="text-gray-300">
-                  Luatss 的"养生打法"：每局比赛保证充足的休息时间，绝不过度劳累。
+                  Luatss 的"胜利钩锁"：每一次挫败都在塑造我的强大，此局不续，汝自误也！
                 </p>
               </CardContent>
             </Card>
