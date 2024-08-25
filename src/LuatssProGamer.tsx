@@ -353,7 +353,7 @@ export default function Component() {
             {[
               { name: "头号粉丝", message: "Luatss 就是我的精神支柱，每次看他比赛都觉得自己还行！" },
               { name: "对手", message: "感谢 Luatss，还得假装骂我们，他的演技确实比枪法靠谱。" },
-              { name: "队友", message: "队友拒绝了我们发起的留言邀请。" },
+              { name: "队友", message: "白内障看不见, 暂时写不了留言。" },
               { name: "解说员", message: "每次解说 Luatss 的比赛，我都会思考：Luatss到底赢了吗？" },
               { name: "战队经理", message: "签下 Luatss 后，我掌握了团队冲突管理。" },
               { name: "Valve员工", message: "我们正在考虑基于 Luatss 设计一个新的'地图喷漆'。不过得等我们做完 Half-Life 3" },
