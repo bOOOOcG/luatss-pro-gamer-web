@@ -1,16 +1,41 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, useAnimation, useInView } from 'framer-motion'
-import { Avatar, AvatarFallback, AvatarImage } from './components/ui/Avatar';
-import { Button } from './components/ui/Button';
-import { Card, CardContent } from './components/ui/Card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/Tabs';
 import { Trophy, Target, Crosshair, Skull, Clock, Users, Gamepad2, Bomb, Zap, Headphones, Coffee } from 'lucide-react'
 import { FaSteam } from 'react-icons/fa'; // 引入 Bilibili 和 Steam 的图标
 import { FaBilibili } from "react-icons/fa6";
 import { FaVideo, FaDollarSign } from "react-icons/fa"; // 引入相关图标
 import { TbBrandOnlyfans } from "react-icons/tb"; // 导入 OnlyFans 的图标
 import { GiFlashGrenade } from "react-icons/gi";
+
 import LuatssAimTrainer from './LuatssAimTrainer';
+import { Avatar, AvatarFallback, AvatarImage } from './components/ui/Avatar';
+import { Button, AnimatedButton } from './components/ui/Button';
+import { Card, CardContent } from './components/ui/Card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/Tabs';
+import { LanguageButton } from './components/ui/LanguageButton';
+import { scrollToNextSection } from './lib/scroll';
+
+const ParticleBackground = () => {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {[...Array(100)].map((_, i) => ( 
+        <div
+          key={i}
+          className="absolute bg-yellow-500 rounded-full"
+          style={{
+            width: Math.random() * 8 + 3 + 'px',  
+            height: Math.random() * 8 + 3 + 'px',
+            left: Math.random() * 100 + '%',
+            top: Math.random() * 100 + '%',
+            opacity: Math.random() * 0.5 + 0.5,  
+            animation: `float ${Math.random() * 15 + 10}s ease-in-out infinite`,  
+            transform: `translateY(${Math.random() * 20 - 10}px)`  
+          }}
+        />
+      ))}
+    </div>
+  )
+}
 
 const AnimatedCounter = ({ value, duration = 4 }: { value: number, duration?: number }) => {
   const [count, setCount] = useState(0)
@@ -107,6 +132,8 @@ export default function Component() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-800 to-violet-900 text-white overflow-hidden">
+      <ParticleBackground /> {/* 新增的背景动画组件 */}
+      {/*<LanguageButton onClick={toggleLanguage} language={language} /> */}
       <header className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -150,14 +177,14 @@ export default function Component() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
           >
-            <Button variant="outline" size="lg" className="text-yellow-500 border-yellow-500 hover:bg-yellow-500 hover:text-black transition-colors duration-300">
-              见证Luatss的"传奇"之路
-            </Button>
+            <AnimatedButton onClick={() => scrollToNextSection('luatss-stats')}>
+              {'见证Luatss的"传奇"之路'}
+            </AnimatedButton>
           </motion.div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-16">
+      <main id="luatss-stats" className="container mx-auto px-4 py-16">
         <main className="container mx-auto px-4 py-16">
           <section className="mb-20">
             <h2 className="text-5xl font-bold mb-12 text-center relative">
@@ -195,14 +222,14 @@ export default function Component() {
           <h2 className="text-5xl font-bold mb-12 text-center">
             <GlitchText text="Luatss 的'传奇'历程" />
           </h2>
-          <Tabs defaultValue="about" className="w-full">
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="about">关于Luatss</TabsTrigger>
-              <TabsTrigger value="achievements">惊人成就</TabsTrigger>
-              <TabsTrigger value="quotes">金句名言</TabsTrigger>
-            </TabsList>
-            <TabsContent value="about">
-              <Card>
+          <Card className="border border-yellow-500"> {/* 添加金边 */}
+            <Tabs defaultValue="about" className="w-full">
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger value="about">关于Luatss</TabsTrigger>
+                <TabsTrigger value="achievements">惊人成就</TabsTrigger>
+                <TabsTrigger value="quotes">金句名言</TabsTrigger>
+              </TabsList>
+              <TabsContent value="about">
                 <CardContent className="p-6 text-gray-200">
                   <p className="mb-4 text-lg">
                     Luatss，是 Enou Club 中冉冉升起的一颗"闪亮之星"，他那传奇般的CS能力，彻底重塑了人们对“稳定”的定义。
@@ -221,10 +248,8 @@ export default function Component() {
                     有时候“无知无畏”和“菜鸟的自信”才是通往胜利的真正秘诀。
                   </p>
                 </CardContent>
-              </Card>
-            </TabsContent>
-            <TabsContent value="achievements">
-              <Card>
+              </TabsContent>
+              <TabsContent value="achievements">
                 <CardContent className="p-6 text-gray-200">
                   <ul className="space-y-4">
                     {achievements.map((achievement, index) => (
@@ -235,10 +260,8 @@ export default function Component() {
                     ))}
                   </ul>
                 </CardContent>
-              </Card>
-            </TabsContent>
-            <TabsContent value="quotes">
-              <Card>
+              </TabsContent>
+              <TabsContent value="quotes">
                 <CardContent className="p-6 text-gray-200">
                   {quotes.map((quote, index) => (
                     <blockquote key={index} className="mb-4 last:mb-0">
@@ -247,9 +270,9 @@ export default function Component() {
                     </blockquote>
                   ))}
                 </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
+              </TabsContent>
+            </Tabs>
+          </Card>
         </section>
 
         <section className="mb-20">
