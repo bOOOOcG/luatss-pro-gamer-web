@@ -6,6 +6,7 @@ import { FaBilibili } from "react-icons/fa6";
 import { FaVideo, FaDollarSign } from "react-icons/fa"; // 引入相关图标
 import { TbBrandOnlyfans } from "react-icons/tb"; // 导入 OnlyFans 的图标
 import { GiFishingHook } from "react-icons/gi";
+import { FaGithub } from 'react-icons/fa';
 import { GiFlashGrenade } from "react-icons/gi";
 
 import LuatssAimTrainer from './LuatssAimTrainer';
@@ -439,7 +440,7 @@ export default function Component() {
                   <span>Steam</span>
                 </a>
                 <a
-                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" /* rick roll */
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center justify-center"
@@ -448,7 +449,7 @@ export default function Component() {
                   <span>Pornhub</span>
                 </a>
                 <a
-                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  href="https://www.youtube.com/watch?v=BeyEGebJ1l4" /* 这不是rick roll */
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gray-800 hover:bg-yellow-500 text-white py-4 px-8 rounded-lg transition-colors duration-300 flex items-center justify-center"
@@ -462,13 +463,27 @@ export default function Component() {
         </div>
       </section>
 
+
       <footer className="bg-gray-900 text-center py-8">
-        <p className="text-lg">&copy; 2021-2024 enou.org. 所有权利保留。</p>
+        <p className="text-lg">&copy; {new Date().getFullYear()} enou.org 所有权利保留。</p>
         <p className="mt-2 text-sm text-gray-500">
           网站声明：本网站纯属娱乐，如有雷同，纯属巧合。Luatss是我们的好朋友，请勿模仿他的游戏风格。
           我们不对因观看本网站内容而产生的任何心理阴影负责。
         </p>
+        <div className="flex justify-center items-center mt-8">
+          <a
+            href="https://github.com/bOOOOcG/luatss-pro-gamer-web"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center text-gray-400 hover:text-white transition-colors duration-300"
+          >
+            <FaGithub className="w-6 h-6 mr-2" />
+            <span>此项目开源在 GitHub</span>
+          </a>
+        </div>
       </footer>
+
+
     </div>
   )
 }
