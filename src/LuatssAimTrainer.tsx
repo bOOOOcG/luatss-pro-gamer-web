@@ -28,7 +28,7 @@ const LuatssAimTrainer: React.FC = () => {
     "浪费我的网费", "开了吗?我说灵智", "来调灵敏度的", "不收后三名", 
     "白练一把", "原神代肝", "收坐骑", "征婚", "勤能补拙", 
     "失望", "聘7", "师承唐启华", "小段60大段150", "鼠标明天到用触摸板玩的", 
-    "bot?", "很棒了已经", "这是幼教资格证考试项目吗", "我用你屁眼玩的cs"
+    "bot?", "很棒了已经", "这是幼教资格证考试项目吗", 
   ];
 
   // 随机选择评价
@@ -38,7 +38,11 @@ const LuatssAimTrainer: React.FC = () => {
 
     // 70% 几率拼接两条评价
     if (Math.random() < 0.7) {
-      const randomIndex2 = Math.floor(Math.random() * evaluations.length);
+      // 不能重复
+      let randomIndex2 = Math.floor(Math.random() * evaluations.length);
+      while (randomIndex2 === randomIndex1) {
+        randomIndex2 = Math.floor(Math.random() * evaluations.length);
+      }
       evaluation += `, ${evaluations[randomIndex2]}`;
     }
 
