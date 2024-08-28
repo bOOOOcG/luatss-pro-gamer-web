@@ -100,7 +100,7 @@ npm run build
 本项目使用 [GNU Affero General Public License v3.0 (AGPL)](https://www.gnu.org/licenses/agpl-3.0.html) 进行许可。根据该许可证：
 
 - 您可以自由地使用、修改和分发本项目的代码。
-- 如果您将修改后的代码分发或用于网络服务，您必须将修改后的源代码公开。
+- 如果您将修改后的代码分发或用于网络服务，您必须将修改后的源代码使用相同的许可证公开。
 
 ## 贡献
 
