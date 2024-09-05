@@ -305,7 +305,7 @@ export default function Component() {
                 <GiFishingHook className="w-16 h-16 mx-auto mb-4 text-yellow-500" />
                 <h3 className="text-2xl font-bold mb-2">胜利钩锁</h3>
                 <p className="text-gray-300">
-                  Luatss 的"胜利钩锁"：每一次挫败都在塑造我的强大，此局不续，汝自误也！
+                  Luatss 的"胜利钩锁"：每一次挫败都在塑造我的强大，此局不续，汝自误也！（但实际上他下把的战绩是负的）
                 </p>
               </CardContent>
             </Card>
@@ -482,8 +482,6 @@ export default function Component() {
           </a>
         </div>
       </footer>
-
-
     </div>
   )
 }
