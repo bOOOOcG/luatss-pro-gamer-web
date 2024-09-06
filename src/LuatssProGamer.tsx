@@ -16,6 +16,7 @@ import { Card, CardContent } from './components/ui/Card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/Tabs';
 import { LanguageButton } from './components/ui/LanguageButton';
 import { scrollToNextSection } from './lib/scroll';
+import FanMessages from './components/ui/Fan-messages'; // 引入新的FanMessages组件
 
 const AnimatedCounter = ({ value, duration = 6 }: { value: number, duration?: number }) => {
   const [count, setCount] = useState(0)
@@ -351,26 +352,8 @@ export default function Component() {
         </section>
 
         <section className="mb-20">
-          <h2 className="text-5xl font-bold mb-12 text-center">
-            <GlitchText text="Luatss 的粉丝留言" />
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { name: "头号粉丝", message: "Luatss 就是我的精神支柱，每次看他比赛都觉得自己还行！" },
-              { name: "对手", message: "感谢 Luatss，还得假装骂我们，他的演技确实比枪法靠谱。" },
-              { name: "队友", message: "白内障看不见, 暂时写不了留言。" },
-              { name: "解说员", message: "每次解说 Luatss 的比赛，我都会思考：Luatss到底赢了吗？" },
-              { name: "战队经理", message: "签下 Luatss 后，我掌握了团队冲突管理。" },
-              { name: "Valve员工", message: "我们正在考虑基于 Luatss 设计一个新的'地图喷漆'。不过得等我们做完 Half-Life 3" },
-            ].map((fan, index) => (
-              <Card key={index} className="bg-gray-800 border-yellow-500">
-                <CardContent className="p-6 text-gray-200">
-                  <h3 className="text-xl font-bold mb-2">{fan.name}</h3>
-                  <p className="italic">"{fan.message}"</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {/* 使用 Fan-messages.tsx 中的滚动留言模块 */}
+          <FanMessages />
         </section>
 
         <section className="mb-20">
