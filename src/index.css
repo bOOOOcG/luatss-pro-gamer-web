@@ -3,4 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
-  
+/* 隐藏滚动条 */
+.no-scrollbar::-webkit-scrollbar {
+    display: none; /* Safari 和 Chrome */
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none; /* IE 和 Edge */
+    scrollbar-width: none; /* Firefox */
+}
